@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_in_2/providers/auth_provider.dart';
+import 'package:quiz_in_2/providers/quiz_provider.dart';
 import 'package:quiz_in_2/routes/app_routes.dart';
 import 'package:quiz_in_2/screens/home_screen.dart';
 import 'package:quiz_in_2/screens/login_screen.dart';
@@ -9,7 +10,15 @@ import 'package:quiz_in_2/screens/resp_screen.dart';
 import 'package:quiz_in_2/screens/splash_screen.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (ctx) => AuthProvider(), child:  MyApp(),));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (ctx) => AuthProvider()),
+        ChangeNotifierProvider(create: (ctx) => QuizProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,16 +34,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.light(
           primary: Color(0xFF0084AD),
           secondary: Color(0xFF003764),
-          surface: Color(0xFFF7F7F7),
-          onSurface:  Color(0xFF333333)
+          onSurface: Color(0xFF333333),
         ),
         scaffoldBackgroundColor: Color(0xFFEDEDED),
         textTheme: TextTheme(bodyMedium: TextStyle(color: Color(0xFF333333))),
-        
       ),
       initialRoute: AppRoutes.splash,
       routes: {
-
         AppRoutes.splash: (ctx) => SplashScreen(),
         AppRoutes.home: (ctx) => HomeScreen(),
         AppRoutes.login: (ctx) => LoginScreen(),
