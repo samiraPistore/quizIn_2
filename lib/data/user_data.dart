@@ -7,6 +7,7 @@ final List<User> users = [
     password: 'ariari',
     question: 'Qual a data de nascimento?',
     answer: '23',
+    imagePath: 'assets/users/aristoteles.jpg',
   ),
   User(
     name: 'Frajola',
@@ -14,6 +15,7 @@ final List<User> users = [
     password: 'frafra',
     question: 'Qual a raça de seu gato?',
     answer: 'Frajola',
+    imagePath: 'assets/users/frajola.jpg',
   ),
   User(
     name: 'Canabrava',
@@ -21,6 +23,7 @@ final List<User> users = [
     password: 'cancan',
     question: 'Qual a cor da bebida preferida?',
     answer: 'Transparente',
+    imagePath: 'assets/users/canabrava.jpg',
   ),
   User(
     name: 'Arthurito',
@@ -28,5 +31,14 @@ final List<User> users = [
     password: 'artart',
     question: 'Qual a altura?',
     answer: '1,70m',
+    imagePath: 'assets/users/arthurito.jpg',
+  ),
+  User(
+    name: 'abc',
+    email: 'abc@exemplo.com',
+    password: 'abc',
+    question: 'Qual a altura?',
+    answer: '1,70m',
+    imagePath: 'assets/users/frajola.jpg',
   ),
 ];

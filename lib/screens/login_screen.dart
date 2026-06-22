@@ -15,9 +15,13 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Center(
         child: Column(
           children: [
-            Row(children: [IconButton(onPressed: (){}, icon: Icon(Icons.abc_outlined))],),
-            Image.asset('assets/logo.png'),
-            LoginForm()
+            Row(
+              children: [
+                IconButton(onPressed: () {}, icon: Icon(Icons.abc_outlined)),
+              ],
+            ),
+            Image.asset('assets/logo.png', width: MediaQuery.of(context).size.width * 0.2,),
+            LoginForm(),
           ],
         ),
       ),

@@ -32,7 +32,7 @@ class AuthService {
     if (user.password != password) {
       return LoginResult.wrongPassword;
     }
-
+    
     return LoginResult.success;
   }
 
