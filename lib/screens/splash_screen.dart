@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:quiz_in_2/data/app_routes.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -8,8 +12,32 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+    @override
+  void initState() {
+    super.initState();
+    
+    //tempo de aparição da tela
+    Timer(const Duration(seconds: 3), () {
+      //garante que o widget foi montado na tela
+      if (!mounted) return;
+      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.login , (route)=> false);
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset('assets/logo.png',width:MediaQuery.of(context).size.width *0.6),
+            SizedBox(height: 10),
+            CircularProgressIndicator(),
+          ],
+        ),
+      ),
+    );
   }
 }
