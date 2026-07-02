@@ -36,7 +36,7 @@ final quizzes = [
     questions: [
       Question(
         statement:
-            'Caso alguém faça umabrincadeira ofensiva comum colega, devemos:',
+            'Caso alguém faça uma brincadeira ofensiva comum colega, devemos:',
         alternatives: [
           'Partir para a briga',
           'Primeiramente conversar sobre o ocorrido',

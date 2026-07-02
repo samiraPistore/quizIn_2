@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quiz_in_2/routes/app_routes.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -13,20 +12,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-    @override
+  @override
   void initState() {
     super.initState();
-     SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.immersiveSticky,
-  );
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     //tempo de aparição da tela
-    Timer(const Duration(seconds: 6), () {
+    Timer(const Duration(seconds: 3), () {
       //garante que o widget foi montado na tela
       if (!mounted) return;
-      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.login , (route)=> false);
+      Navigator.of(
+        context,
+      ).pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +34,10 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/logo.png',width:MediaQuery.of(context).size.width *0.6),
+            Image.asset(
+              'assets/logo.png',
+              width: MediaQuery.of(context).size.width * 0.6,
+            ),
             SizedBox(height: 10),
             CircularProgressIndicator(),
           ],

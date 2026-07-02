@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_in_2/components/custom_appbar.dart';
+import 'package:quiz_in_2/providers/auth_provider.dart';
 import 'package:quiz_in_2/providers/quiz_provider.dart';
+import 'package:quiz_in_2/routes/app_routes.dart';
 
 class RespScreens extends StatelessWidget {
   const RespScreens({super.key});
@@ -9,6 +11,7 @@ class RespScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final quiz = context.watch<QuizProvider>();
+    final provider = context.watch<AuthProvider>();
 
     final question = quiz.currentQuestion;
 
@@ -23,16 +26,22 @@ class RespScreens extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // HEADER 
-            CustomAppbar(
-              userName: "User",
-              imagePath: "path",
-              onLogout: () {},
-            ),
+           
+              CustomAppbar(
+                userName: provider.currentUser!.name,
+                imagePath: provider.currentUser!.imagePath,
+                onLogout: () {
+                  provider.logOut();
+
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
+                },
+              ),
 
             const SizedBox(height: 20),
 
-            // ENUNCIADO
+         
             Text(
               question.statement,
               style: const TextStyle(fontSize: 18),
@@ -40,7 +49,7 @@ class RespScreens extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            //  ALTERNATIVAS
+          
             ...List.generate(question.alternatives.length, (i) {
               return RadioListTile<int>(
   value: i,
@@ -53,8 +62,7 @@ class RespScreens extends StatelessWidget {
             }),
 
             const Spacer(),
-
-            //  BOTÃO RESPONDER
+        
            ElevatedButton(
   onPressed: quiz.selectedIndex == null
       ? null
@@ -91,7 +99,7 @@ class RespScreens extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // BOTÃO PULAR
+
             ElevatedButton(
               onPressed: () {
                 quiz.skipQuestion();
