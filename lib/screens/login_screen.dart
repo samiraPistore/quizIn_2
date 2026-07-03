@@ -12,17 +12,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.abc_outlined)),
-              ],
-            ),
-            Image.asset('assets/logo.png', width: MediaQuery.of(context).size.width * 0.2,),
-            LoginForm(),
-          ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(onPressed: () {}, icon: Icon(Icons.info)),
+                ],
+              ),
+              Image.asset('assets/logo.png', width: MediaQuery.of(context).size.width * 0.2,),
+              LoginForm(),
+            ],
+          ),
         ),
       ),
     );

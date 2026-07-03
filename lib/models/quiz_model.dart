@@ -14,7 +14,7 @@ class Quiz {
 class Question {
   final String statement;
   final List<String> alternatives;
-  final int correctIndex;
+  final int? correctIndex;
 
   Question({
     required this.statement,

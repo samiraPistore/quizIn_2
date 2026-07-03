@@ -15,35 +15,37 @@ class CustomAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        InkWell(
-          onTap: () {
-            Navigator.of(context).pushReplacementNamed(AppRoutes.home);
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-            width: MediaQuery.of(context).size.width * 0.2,
-            child: Image.asset('assets/logo.png'),
-          ),
-        ),
-
-        Column(
-          children: [
-            Text(userName),
-            TextButton(
-              onPressed: onLogout,
-              child: const Text('Logout'),
+    return SafeArea(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+            },
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: Image.asset('assets/logo.png'),
             ),
-          ],
-        ),
-
-        CircleAvatar(
-          radius: 35,
-          backgroundImage: AssetImage(imagePath),
-        ),
-      ],
+          ),
+      
+          Column(
+            children: [
+              Text(userName),
+              TextButton(
+                onPressed: onLogout,
+                child: const Text('Logout'),
+              ),
+            ],
+          ),
+      
+          CircleAvatar(
+            radius: 35,
+            backgroundImage: AssetImage(imagePath),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -19,29 +19,27 @@ class HomeScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppbar(
-                userName: provider.currentUser!.name,
-                imagePath: provider.currentUser!.imagePath,
-                onLogout: () {
-                  provider.logOut();
-
-                  Navigator.of(
-                    context,
-                  ).pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
-                },
-              ),
-
-              Text('QUIZES'),
-
-              QuizList(),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppbar(
+              userName: provider.currentUser!.name,
+              imagePath: provider.currentUser!.imagePath,
+              onLogout: () {
+                provider.logOut();
+      
+                Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
+              },
+            ),
+      
+            Text('QUIZES'),
+      
+            QuizList(),
+          ],
         ),
       ),
     );

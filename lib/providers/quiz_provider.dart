@@ -5,12 +5,13 @@ class QuizProvider extends ChangeNotifier {
   Quiz? _selectedQuiz;
   int _currentQuestionIndex = 0;
   int _score = 0;
-
+  int? _selectedIndex;
+  
+  //getters para ui acessar
   Quiz? get selectedQuiz => _selectedQuiz;
-
   int get score => _score;
-
   int get currentQuestionIndex => _currentQuestionIndex;
+  int? get selectedIndex => _selectedIndex;
 
   Question get currentQuestion =>
       _selectedQuiz!.questions[_currentQuestionIndex];
@@ -19,11 +20,12 @@ class QuizProvider extends ChangeNotifier {
       _currentQuestionIndex == _selectedQuiz!.questions.length - 1;
 
   double get percentage => (_score / _selectedQuiz!.questions.length) * 100;
-
+  
   void startQuiz(Quiz quiz) {
     _selectedQuiz = quiz;
     _currentQuestionIndex = 0;
     _score = 0;
+    _selectedIndex = null;
 
     notifyListeners();
   }
@@ -32,9 +34,8 @@ class QuizProvider extends ChangeNotifier {
     if (selectedIndex == currentQuestion.correctIndex) {
       _score++;
     }
-
-    nextQuestion();
   }
+ 
 
   void skipQuestion() {
     nextQuestion();
@@ -43,17 +44,14 @@ class QuizProvider extends ChangeNotifier {
   void nextQuestion() {
     if (!isLastQuestion) {
       _currentQuestionIndex++;
+      _selectedIndex = null;
     }
 
     notifyListeners();
   }
 
-  int? _selectedIndex;
-
-int? get selectedIndex => _selectedIndex;
-
-void selectOption(int index) {
-  _selectedIndex = index;
-  notifyListeners();
-}
+  void selectOption(int index) {
+    _selectedIndex = index;
+    notifyListeners();
+  }
 }
